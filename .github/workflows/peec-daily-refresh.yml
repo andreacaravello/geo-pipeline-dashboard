@@ -1,0 +1,47 @@
+name: Peec AI Daily SoV Refresh
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 06:00 UTC daily
+  workflow_dispatch:
+    inputs:
+      days_back:
+        description: 'Number of days of history to pull'
+        required: false
+        default: '30'
+
+jobs:
+  refresh-peec-data:
+    runs-on: ubuntu-latest
+    name: Pull live Peec AI SoV data and commit
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet httpx pandas python-dotenv
+
+      - name: Pull Peec AI SoV data (active-prompts filter applied)
+        env:
+          PEEC_API_KEY: ${{ secrets.PEEC_API_KEY }}
+          PEEC_PROJECT_ID: or_730ef332-dd5b-4fa5-9923-226bed3cfa42
+          DAYS_BACK: ${{ github.event.inputs.days_back || '30' }}
+        run: |
+          python src/ingest/peec_api.py
+
+      - name: Commit updated Peec data
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/processed/peec_non_brand.csv \
+                   data/processed/peec_brand_only.csv                   data/processed/ingestion_log.txt
+          git diff --staged --quiet || \
+            git commit -m "data: auto-refresh Peec AI SoV $(date -u +%Y-%m-%d)"
+          git push
