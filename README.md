@@ -1,7 +1,7 @@
 # GEO-to-Pipeline Dashboard
 
 > **Peec MCP Challenge — Reporting Automation**
-> Built for [Cello](https://cello.so) -- B2B SaaS referral marketing platform
+> Built for a B2B SaaS referral marketing platform
 
 A daily-automated analytics dashboard that connects **Peec AI Share of Voice** to qualified pipeline. It proves, with real data, that AI search visibility (ChatGPT, Perplexity, Google AI Overviews) drives revenue.
 
@@ -47,7 +47,7 @@ No manual exports. No stale data. No dashboards that require remembering to chec
 | Page | What It Shows |
 |------|--------------|
 | Overview | AI citation share vs. inbound qualified pipeline trend |
-| Share of Voice | Cello vs. 5 competitors across topic clusters |
+| Share of Voice | Brand vs. 5 competitors across topic clusters |
 | Keyword Rankings | GSC keyword positions mapped to GEO topic clusters |
 | Content Opportunities | High-impression / low-CTR queries with zero content coverage |
 | AI Attribution | HubSpot deals segmented by AI search attribution source |
@@ -60,12 +60,12 @@ No manual exports. No stale data. No dashboards that require remembering to chec
 
 | Metric | Value |
 |--------|-------|
-| Inbound QP target | 1,100 / quarter (from 789 -- 3x growth goal) |
-| AI-attributed deal share | 27.3% of inbound pipeline (April 2026) |
-| HubSpot deals joined | 2,662 |
+| Inbound QP target | 1,000+ / quarter (3x growth goal) |
+| AI-attributed deal share | ~25% of inbound pipeline |
+| HubSpot deals joined | 2,000+ |
 | GSC queries ingested | 20,000+ |
-| Content gaps surfaced | 212 ICP queries with zero existing content |
-| Competitors tracked | Viral Loops, Extole, Referral Factory, Friendbuy, Ambassador |
+| Content gaps surfaced | 200+ ICP queries with zero existing content |
+| Competitors tracked | 5 direct competitors in the referral software category |
 
 ---
 
