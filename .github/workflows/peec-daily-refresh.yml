@@ -2,7 +2,7 @@ name: Peec AI Daily SoV Refresh
 
 on:
   schedule:
-    - cron: '0 6 * * *'   # 06:00 UTC daily
+    - cron: '0 6 * * *'    # 06:00 UTC daily
   workflow_dispatch:
     inputs:
       days_back:
@@ -31,7 +31,7 @@ jobs:
       - name: Pull Peec AI SoV data (active-prompts filter applied)
         env:
           PEEC_API_KEY: ${{ secrets.PEEC_API_KEY }}
-          PEEC_PROJECT_ID: or_730ef332-dd5b-4fa5-9923-226bed3cfa42
+          PEEC_PROJECT_ID: ${{ secrets.PEEC_PROJECT_ID }}
           DAYS_BACK: ${{ github.event.inputs.days_back || '30' }}
         run: |
           python src/ingest/peec_api.py
@@ -41,7 +41,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add data/processed/peec_non_brand.csv \
-                   data/processed/peec_brand_only.csv                   data/processed/ingestion_log.txt
+                     data/processed/peec_brand_only.csv                   data/processed/ingestion_log.txt
           git diff --staged --quiet || \
             git commit -m "data: auto-refresh Peec AI SoV $(date -u +%Y-%m-%d)"
           git push
